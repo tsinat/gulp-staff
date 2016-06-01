@@ -21,7 +21,7 @@ gulp.task('watch', ['watch.js', 'watch.css', 'watch.lint']);
 
 gulp.task('serve', function() {
     nodemon({
-        ignore:['client', 'public', 'Gulpfile.js']
+        ignore: ['client', 'public', 'Gulpfile.js']
     });
 });
 
@@ -31,11 +31,11 @@ gulp.task('watch.lint', function() {
 
 gulp.task('lint', function() {
     return gulp.src([
-        './**/*.js',
-        '!bundle.js',
-        '!Gulpfile.js',
-        '!./node_modules/**/*.js',
-        '!./public/bower_components/**/*.js'
+            './**/*.js',
+            '!bundle.js',
+            '!Gulpfile.js',
+            '!./node_modules/**/*.js',
+            '!./public/bower_components/**/*.js'
         ])
         .pipe(plumber())
         .pipe(eslint())
@@ -53,7 +53,9 @@ gulp.task('js', function() {
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('bundle.js'))
-        .pipe(babel({presets: ['es2015'] }))
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(annotate())
         .pipe(uglify())
         .pipe(sourcemaps.write())
